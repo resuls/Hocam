@@ -1,10 +1,11 @@
 package com.hocam.ui.main;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,11 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 
 import com.hocam.R;
+import com.hocam.models.Course;
+import com.hocam.models.Department;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -45,13 +51,33 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
-        final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
+        final View root = inflater.inflate(R.layout.fragment_main, container, false);
+        final RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(root.getContext());
+
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.hasFixedSize();
+
+        pageViewModel.getmList().observe(this, new Observer<List>() {
+
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(@Nullable List itemList) {
+                if (itemList != null && !itemList.isEmpty()) {
+                    if (itemList.get(0) instanceof Course) {
+                        CoursesRecyclerViewAdapter adapter;
+                        adapter = new CoursesRecyclerViewAdapter(root.getContext(), (ArrayList<Course>) itemList);
+                        recyclerView.setAdapter(adapter);
+                    }
+                    else {
+                        DepartmentsRecyclerViewAdapter adapter;
+                        adapter = new DepartmentsRecyclerViewAdapter(root.getContext(), (ArrayList<Department>) itemList);
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+
             }
+
         });
         return root;
     }
