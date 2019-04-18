@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
@@ -30,8 +30,8 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        updateUI(currentUser);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity
 
     private void updateUI(FirebaseUser currentUser)
     {
-        finish();
+
     }
 
     public void load(View view)

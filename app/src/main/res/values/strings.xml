@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Hocam</string>
     <string name="sign_in">Sign In</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">MY DEPARTMENT</string>
+    <string name="tab_text_2">ALL</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
 </resources>
