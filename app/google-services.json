@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "557794133594",
+    "firebase_url": "https://hocam-34516.firebaseio.com",
+    "project_id": "hocam-34516",
+    "storage_bucket": "hocam-34516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557794133594:android:9979d05cc9218fdf",
+        "android_client_info": {
+          "package_name": "com.hocam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557794133594-0j93fh5emvtupqravvvdecfr22d9rkp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHqYlwyHxqC_QpAj8uMpIPk-cd3rXBKu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557794133594-0j93fh5emvtupqravvvdecfr22d9rkp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
