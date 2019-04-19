@@ -54,7 +54,8 @@
                 android:background="@null"
                 android:text="@string/register"
                 android:textAllCaps="false"
-                android:textColor="@color/accent" />
+                android:textColor="@color/accent"
+                android:onClick="registerActivity" />
 
         </LinearLayout>
 

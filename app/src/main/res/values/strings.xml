@@ -7,4 +7,21 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+
+    <!--Department Codes-->
+    <string name="acc">ACC</string>
+    <string name="ada">ADA</string>
+    <string name="amer">AMER</string>
+
+    <string name="ctis">CTIS</string>
+    <string name="register_success">Successfully registered!</string>
+
+    <string-array name="departments">
+        <item>@string/acc</item>
+        <item>@string/ada</item>
+        <item>@string/amer</item>
+        <item>@string/ctis</item>
+    </string-array>
 </resources>

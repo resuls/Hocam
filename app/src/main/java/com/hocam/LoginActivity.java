@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity
                 fadeOutProgressDialog();
                 delayedStartNextActivity();
             }
-        }, 2000);
+        }, 1000);
     }
 
     private void revealButton()
@@ -153,5 +153,11 @@ public class LoginActivity extends AppCompatActivity
     private int getFinalWidth()
     {
         return (int) getResources().getDimension(R.dimen.get_width);
+    }
+
+    public void registerActivity(View view)
+    {
+        finish();
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 }

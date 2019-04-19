@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "557794133594-kutigqskps2fromkiegsoprc1a0bi7oc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hocam",
+            "certificate_hash": "0db50918fe1a23abe6feb4e3e9e7489cc8a3fb3c"
+          }
+        },
+        {
           "client_id": "557794133594-0j93fh5emvtupqravvvdecfr22d9rkp4.apps.googleusercontent.com",
           "client_type": 3
         }
