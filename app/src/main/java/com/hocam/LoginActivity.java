@@ -10,11 +10,16 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hocam.databinding.ActivityLoginBinding;
@@ -24,6 +29,7 @@ public class LoginActivity extends AppCompatActivity
     private final int REGISTER_REQUEST = 100;
     private ActivityLoginBinding binding;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,26 +37,66 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        updateUI(currentUser);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        user = mAuth.getCurrentUser();
     }
 
-    private void updateUI(FirebaseUser currentUser)
+    public void signIn(View view)
     {
+        final String email = binding.email.getText().toString().trim();
+        final String password = binding.password.getText().toString();
 
-    }
+        if (email.isEmpty())
+        {
+            binding.email.setError("E-mail required!");
+            binding.email.requestFocus();
+            return;
+        }
 
-    public void load(View view)
-    {
-        animateButtonWidth();
-        fadeOutTextandSetProgressDialog();
-        nextAction();
+        if (!RegisterActivity.EMAIL.matcher(email).matches())
+        {
+            binding.email.setError("Enter a valid E-mail address!");
+            binding.email.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty())
+        {
+            binding.password.setError("Password required!");
+            binding.password.requestFocus();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            if (user.isEmailVerified())
+                            {
+                                animateButtonWidth();
+                                fadeOutTextandSetProgressDialog();
+                                nextAction();
+                            }
+                            else
+                            {
+                                makeToast("Please verify your email!");
+                            }
+                        }
+                        else
+                        {
+                            makeToast(task.getException().getMessage());
+                        }
+                    }
+                });
     }
 
     private void animateButtonWidth()
@@ -177,5 +223,10 @@ public class LoginActivity extends AppCompatActivity
                 binding.password.setText(password);
             }
         }
+    }
+
+    private void makeToast(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

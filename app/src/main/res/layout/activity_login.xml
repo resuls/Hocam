@@ -74,7 +74,7 @@
             android:elevation="2dp"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
-            android:onClick="load"
+            android:onClick="signIn"
             tools2:targetApi="lollipop"
             tools:layout_constraintBottom_toBottomOf="parent"
             tools:layout_constraintEnd_toEndOf="parent"

@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hocam.databinding.ActivityRegisterBinding;
 import com.hocam.models.User;
@@ -21,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity
 {
-    private static final Pattern EMAIL = Pattern.compile(
+    public static final Pattern EMAIL = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}@ug.bilkent.edu.tr");
     private ActivityRegisterBinding binding;
     private FirebaseAuth mAuth;
@@ -120,14 +121,7 @@ public class RegisterActivity extends AppCompatActivity
                                     binding.pbRegister.setVisibility(View.GONE);
                                     if (task.isSuccessful())
                                     {
-                                        Toast.makeText(RegisterActivity.this, getString(R.string.register_success),
-                                                Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                        intent.putExtra("email", email);
-                                        intent.putExtra("password", password);
-                                        setResult(Activity.RESULT_OK, intent);
-
-                                        finish();
+                                        sendVerificationEmail(email, password);
                                     }
                                     else
                                     {
@@ -144,5 +138,33 @@ public class RegisterActivity extends AppCompatActivity
                         }
                     }
                 });
+    }
+
+    private void sendVerificationEmail(final String email, final String password)
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null)
+        {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                Toast.makeText(RegisterActivity.this, getString(R.string.register_success),
+                                        Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                intent.putExtra("email", email);
+                                intent.putExtra("password", password);
+                                setResult(Activity.RESULT_OK, intent);
+
+                                finish();
+                            }
+                        }
+                    });
+        }
     }
 }
