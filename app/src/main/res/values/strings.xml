@@ -17,6 +17,8 @@
 
     <string name="ctis">CTIS</string>
     <string name="register_success">Successfully registered!</string>
+    <string name="hocam_ug_bilkent_edu_tr">hocam@ug.bilkent.edu.tr</string>
+    <string name="info">Please register with your bilkent email which ends with @ug.bilkent.edu.tr</string>
 
     <string-array name="departments">
         <item>@string/acc</item>

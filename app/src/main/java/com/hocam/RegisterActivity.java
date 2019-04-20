@@ -1,5 +1,7 @@
 package com.hocam;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,12 +21,10 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity
 {
-    private ActivityRegisterBinding binding;
-    private FirebaseAuth mAuth;
-
     private static final Pattern EMAIL = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}@ug.bilkent.edu.tr");
-
+    private ActivityRegisterBinding binding;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity
         final String surname = binding.edtSurname.getText().toString().trim();
         final String department = binding.spinner.getSelectedItem().toString().trim();
         final String email = binding.edtEmail.getText().toString().trim();
-        String password = binding.edtPassword.getText().toString();
+        final String password = binding.edtPassword.getText().toString();
 
         if (name.isEmpty())
         {
@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity
                         {
                             User user = new User(name, surname, department, email);
 
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>()
                             {
@@ -122,6 +122,12 @@ public class RegisterActivity extends AppCompatActivity
                                     {
                                         Toast.makeText(RegisterActivity.this, getString(R.string.register_success),
                                                 Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        intent.putExtra("email", email);
+                                        intent.putExtra("password", password);
+                                        setResult(Activity.RESULT_OK, intent);
+
+                                        finish();
                                     }
                                     else
                                     {

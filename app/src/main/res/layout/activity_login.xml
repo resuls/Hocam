@@ -47,15 +47,18 @@
 
 
             <Button
-                android:id="@+id/btn"
+                android:id="@+id/btnRegister"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@null"
+                android:background="@drawable/register_button"
+                android:elevation="1dp"
+                android:onClick="registerActivity"
                 android:text="@string/register"
                 android:textAllCaps="false"
                 android:textColor="@color/accent"
-                android:onClick="registerActivity" />
+                android:textSize="18sp" />
+
 
         </LinearLayout>
 
@@ -68,29 +71,30 @@
             android:layout_marginBottom="64dp"
             android:background="@drawable/sign_in_button"
             android:clickable="true"
-            android:elevation="4dp"
-            android:onClick="load"
+            android:elevation="2dp"
+            android:focusable="true"
             android:foreground="?selectableItemBackground"
+            android:onClick="load"
+            tools2:targetApi="lollipop"
             tools:layout_constraintBottom_toBottomOf="parent"
             tools:layout_constraintEnd_toEndOf="parent"
-            tools:layout_constraintStart_toStartOf="parent"
-            android:focusable="true" tools2:targetApi="lollipop">
+            tools:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/signInText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_in"
                 android:layout_gravity="center"
+                android:text="@string/sign_in"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
         </FrameLayout>
 
         <View

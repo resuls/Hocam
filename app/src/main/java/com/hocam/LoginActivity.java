@@ -3,6 +3,7 @@ package com.hocam;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import com.hocam.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity
 {
+    private final int REGISTER_REQUEST = 100;
     private ActivityLoginBinding binding;
     private FirebaseAuth mAuth;
 
@@ -157,7 +159,23 @@ public class LoginActivity extends AppCompatActivity
 
     public void registerActivity(View view)
     {
-        finish();
-        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        startActivityForResult(new Intent(LoginActivity.this, RegisterActivity.class),
+                REGISTER_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REGISTER_REQUEST)
+        {
+            if (resultCode == Activity.RESULT_OK)
+            {
+                String email = data.getStringExtra("email");
+                String password = data.getStringExtra("password");
+                binding.email.setText(email);
+                binding.password.setText(password);
+            }
+        }
     }
 }
