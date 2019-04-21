@@ -19,6 +19,11 @@
     <string name="register_success">Successfully registered!</string>
     <string name="hocam_ug_bilkent_edu_tr">hocam@ug.bilkent.edu.tr</string>
     <string name="info">Please register with your bilkent email which ends with @ug.bilkent.edu.tr</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="send_email">Send email</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
 
     <string-array name="departments">
         <item>@string/acc</item>
