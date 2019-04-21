@@ -31,4 +31,13 @@
         <item>@string/amer</item>
         <item>@string/ctis</item>
     </string-array>
+    <string name="title_activity_instructor">InstructorActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="teacher">Instructor:</string>
+    <string name="rating">Rating:</string>
+    <string name="course">Course:</string>
+    <string name="semester">Semester:</string>
+    <string name="anonymus">Make it Anonymus</string>
+    <string name="submit">Submit</string>
+    <string name="share">share</string>
 </resources>

@@ -13,8 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".CourseActivity" />
+        <activity
+            android:name=".InstructorActivity"
+            android:label="@string/title_activity_instructor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
