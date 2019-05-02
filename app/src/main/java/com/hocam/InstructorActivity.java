@@ -36,5 +36,6 @@ public class InstructorActivity extends AppCompatActivity {
                 .setTitle(intent.getStringExtra("instructor")+
                           intent.getIntExtra("rating", 0)+
                           new String(Character.toChars(0x2B50)));
+        binding.subtitleTv.setText("Department: " + intent.getStringExtra("department"));
     }
 }
