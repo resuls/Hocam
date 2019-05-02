@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hocam.databinding.ActivityLoginBinding;
+import com.hocam.ui.main.ResetPasswordDialog;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -228,5 +229,16 @@ public class LoginActivity extends AppCompatActivity
     private void makeToast(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setEmailBox(String email)
+    {
+        binding.email.setText(email);
+    }
+
+    public void forgotPassword(View view)
+    {
+        ResetPasswordDialog dialog = new ResetPasswordDialog();
+        dialog.show(getSupportFragmentManager(), "ResetDialog");
     }
 }
