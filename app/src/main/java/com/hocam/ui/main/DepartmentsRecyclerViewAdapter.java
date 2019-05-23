@@ -49,7 +49,7 @@ public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<Departm
         return deptList.size();
     }
 
-    public class ViewItemHolder extends RecyclerView.ViewHolder
+    public class ViewItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView deptName, deptAbbr;
         ConstraintLayout parentLayout;
@@ -60,6 +60,12 @@ public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<Departm
             deptName = itemView.findViewById(R.id.deptName);
             deptAbbr = itemView.findViewById(R.id.deptAbbr);
             parentLayout = itemView.findViewById(R.id.recyclerItemLayout);
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+
         }
     }
 }
