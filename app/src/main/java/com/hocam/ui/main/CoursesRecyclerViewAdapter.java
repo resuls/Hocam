@@ -16,18 +16,18 @@ import java.util.ArrayList;
 public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecyclerViewAdapter.RecyclerViewItemHolder>
 {
     private Context context;
-    private ArrayList<Course> recyclerItemValues;
+    private ArrayList<Course> courseList;
 
-    public CoursesRecyclerViewAdapter(Context context, ArrayList<Course> values)
+    public CoursesRecyclerViewAdapter(Context context, ArrayList<Course> courseList)
     {
         this.context = context;
-        this.recyclerItemValues = values;
+        this.courseList = courseList;
     }
 
     @Override
     public RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
     {
-        LayoutInflater inflator = LayoutInflater.from(viewGroup.getContext());
+        LayoutInflater inflator = LayoutInflater.from(context);
 
         View itemView = inflator.inflate(R.layout.courses_recyler, viewGroup, false);
 
@@ -38,27 +38,18 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
     @Override
     public void onBindViewHolder(RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
     {
-
-        final Course sm = recyclerItemValues.get(i);
+        Course sm = courseList.get(i);
 
         myRecyclerViewItemHolder.courseCode.setText(sm.getCode());
         myRecyclerViewItemHolder.courseName.setText(sm.getName());
         myRecyclerViewItemHolder.average.setText(Double.toString(sm.getAverage()));
 
-        myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
-            }
-        });
     }
 
     @Override
     public int getItemCount()
     {
-        return recyclerItemValues.size();
+        return courseList.size();
     }
 
     class RecyclerViewItemHolder extends RecyclerView.ViewHolder

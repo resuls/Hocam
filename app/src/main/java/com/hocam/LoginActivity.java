@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity
             startActivity(i);
             finish();
         }
+        else
+            mAuth.signOut();
 
         setContentView(R.layout.activity_login);
 
@@ -89,6 +91,7 @@ public class LoginActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
+                            user = mAuth.getCurrentUser();
                             if (user.isEmailVerified())
                             {
                                 animateButtonWidth();

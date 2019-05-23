@@ -13,57 +13,48 @@ import com.hocam.models.Department;
 
 import java.util.ArrayList;
 
-public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentsRecyclerViewAdapter.RecyclerViewItemHolder>
+public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentsRecyclerViewAdapter.ViewItemHolder>
 {
     private Context context;
-    private ArrayList<Department> recyclerItemValues;
+    private ArrayList<Department> deptList;
 
-    public DepartmentsRecyclerViewAdapter(Context context, ArrayList<Department> values)
+    public DepartmentsRecyclerViewAdapter(Context context, ArrayList<Department> deptList)
     {
         this.context = context;
-        this.recyclerItemValues = values;
+        this.deptList = deptList;
     }
 
     @Override
-    public DepartmentsRecyclerViewAdapter.RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    public ViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
     {
-        LayoutInflater inflator = LayoutInflater.from(viewGroup.getContext());
+        LayoutInflater inflator = LayoutInflater.from(context);
 
-        View itemView = inflator.inflate(R.layout.departments_recycler, viewGroup, false);
+        View view = inflator.inflate(R.layout.departments_recycler, viewGroup, false);
 
-        DepartmentsRecyclerViewAdapter.RecyclerViewItemHolder mViewHolder = new DepartmentsRecyclerViewAdapter.RecyclerViewItemHolder(itemView);
-        return mViewHolder;
+        return new ViewItemHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(DepartmentsRecyclerViewAdapter.RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
+    public void onBindViewHolder(ViewItemHolder myRecyclerViewItemHolder, int i)
     {
-
-        final Department sm = recyclerItemValues.get(i);
+        Department sm = deptList.get(i);
 
         myRecyclerViewItemHolder.deptName.setText(sm.getName());
         myRecyclerViewItemHolder.deptAbbr.setText(sm.getAbbr());
-
-//        myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
     }
 
     @Override
     public int getItemCount()
     {
-        return recyclerItemValues.size();
+        return deptList.size();
     }
 
-    class RecyclerViewItemHolder extends RecyclerView.ViewHolder
+    public class ViewItemHolder extends RecyclerView.ViewHolder
     {
         TextView deptName, deptAbbr;
         ConstraintLayout parentLayout;
 
-        public RecyclerViewItemHolder(View itemView)
+        public ViewItemHolder(View itemView)
         {
             super(itemView);
             deptName = itemView.findViewById(R.id.deptName);
