@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/apk/res-auto"
     xmlns:tools2="http://schemas.android.com/tools">
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,8 +15,8 @@
             android:layout_marginTop="50dp"
             android:text="@string/teacher"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/teacherName"
@@ -25,12 +25,12 @@
             android:layout_marginStart="112dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="214dp"
-            android:layout_marginBottom="585dp"
+            android:layout_marginBottom="16dp"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_constraintBottom_toTopOf="@+id/ratingBar"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toEndOf="@+id/textView"
+            tools:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
@@ -40,8 +40,8 @@
             android:layout_marginTop="32dp"
             android:text="@string/rating"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -50,11 +50,10 @@
             android:layout_marginStart="68dp"
             android:layout_marginTop="93dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="71dp"
-            app:layout_constraintBottom_toTopOf="@+id/courseSpinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:stepSize="1"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toEndOf="@+id/textView3"
+            tools:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
@@ -64,19 +63,8 @@
             android:layout_marginTop="91dp"
             android:text="@string/course"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Spinner
-            android:id="@+id/courseSpinner"
-            android:layout_width="201dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="69dp"
-            android:layout_marginTop="71dp"
-            android:layout_marginEnd="64dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textView5"
@@ -86,28 +74,28 @@
             android:layout_marginTop="56dp"
             android:text="@string/semester"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Spinner
             android:id="@+id/yearSpinner"
             android:layout_width="136dp"
             android:layout_height="35dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="53dp"
             android:entries="@array/years"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/courseSpinner" />
+            tools:layout_constraintStart_toEndOf="@+id/textView5"
+            tools:layout_constraintTop_toBottomOf="@+id/course" />
 
         <Spinner
             android:id="@+id/semesterSpinner"
             android:layout_width="130dp"
             android:layout_height="35dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="53dp"
             android:layout_marginEnd="16dp"
             android:entries="@array/semesters"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseSpinner" />
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/course" />
 
         <EditText
             android:id="@+id/reviewText"
@@ -120,11 +108,11 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            app:layout_constraintBottom_toTopOf="@+id/isAnonymus"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/yearSpinner" />
+            tools:layout_constraintBottom_toTopOf="@+id/isAnonymus"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintHorizontal_bias="1.0"
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/yearSpinner" />
 
         <CheckBox
             android:id="@+id/isAnonymus"
@@ -135,10 +123,10 @@
             android:layout_marginEnd="245dp"
             android:layout_marginBottom="66dp"
             android:text="@string/anonymus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reviewText" />
+            tools:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/reviewText" />
 
         <Button
             android:id="@+id/submitButton"
@@ -149,9 +137,25 @@
             android:layout_marginEnd="156dp"
             android:layout_marginBottom="6dp"
             android:text="@string/submit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reviewText" />
+            tools:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/reviewText" />
+
+        <TextView
+            android:id="@+id/course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="53dp"
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:layout_constraintBottom_toTopOf="@+id/yearSpinner"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toEndOf="@+id/textView4"
+            tools:layout_constraintTop_toBottomOf="@+id/ratingBar" />
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -35,6 +35,7 @@ public class InstructorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(InstructorActivity.this, ReviewActivity.class);
                 intent.putExtra("Instructor", instructor);
+                intent.putExtra("course", getIntent().getStringExtra("course"));
                 startActivity(intent);
             }
         });

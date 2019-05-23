@@ -1,5 +1,6 @@
 package com.hocam;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +26,9 @@ public class ReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_review);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final Instructor instructor = (Instructor) intent.getSerializableExtra("Instructor");
+        binding.course.setText(intent.getStringExtra("course"));
 
 
         binding.teacherName.setText(instructor.getName());
@@ -34,7 +36,9 @@ public class ReviewActivity extends AppCompatActivity {
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String course = binding.courseSpinner.getSelectedItem().toString();
+                ProgressDialog dialog = ProgressDialog.show(ReviewActivity.this, "",
+                        "Loading. Please wait...", true);
+                String course = binding.course.getText().toString();
                 mDatabase = FirebaseDatabase.getInstance().getReference("departments")
                         .child(course.split(" ")[0])
                         .child(course).child("teachers").child(instructor.getName());
@@ -42,6 +46,8 @@ public class ReviewActivity extends AppCompatActivity {
                         course, Integer.parseInt(binding.yearSpinner.getSelectedItem().toString()),
                         binding.semesterSpinner.getSelectedItem().toString(), binding.reviewText.getText().toString(), binding.ratingBar.getNumStars(),
                         binding.isAnonymus.isSelected()));
+                dialog.dismiss();
+                startActivity(new Intent(ReviewActivity.this, MainActivity.class));
             }
         });
     }
