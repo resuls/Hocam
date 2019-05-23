@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hocam.InstructorActivity;
@@ -46,7 +47,7 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
         final Instructor sm = recyclerItemValues.get(i);
 
         myRecyclerViewItemHolder.name.setText(sm.getName());
-        myRecyclerViewItemHolder.rating.setText(String.valueOf(sm.getRating()));
+        myRecyclerViewItemHolder.ratingBar.setRating(sm.getRating());
 
         myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener()
         {
@@ -70,7 +71,8 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
 
     class RecyclerViewItemHolder extends RecyclerView.ViewHolder
     {
-        TextView name, rating;
+        TextView name;
+        RatingBar ratingBar;
         ConstraintLayout parentLayout;
 
         public RecyclerViewItemHolder(View itemView)
@@ -78,7 +80,8 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
             super(itemView);
             parentLayout = itemView.findViewById(R.id.layout);
             name = itemView.findViewById(R.id.name);
-            rating = itemView.findViewById(R.id.rating);
+            ratingBar = itemView.findViewById(R.id.ratingBar2);
+            ratingBar.setIsIndicator(true);
         }
     }
 }
