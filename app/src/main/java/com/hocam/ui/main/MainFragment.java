@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,20 +22,16 @@ import com.hocam.models.Department;
 
 import java.util.ArrayList;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class PlaceholderFragment extends Fragment
+public class MainFragment extends Fragment
 {
-
-    DatabaseReference mDatabase;
-    ArrayList<Department> deptList = new ArrayList<>();
-    ArrayList<Course> courseList = new ArrayList<>();
+    private ProgressBar progressBar;
+    private ArrayList<Department> deptList = new ArrayList<>();
+    private ArrayList<Course> courseList = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public static PlaceholderFragment newInstance(int index)
+    public static MainFragment newInstance(int index)
     {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+        MainFragment fragment = new MainFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -66,6 +63,7 @@ public class PlaceholderFragment extends Fragment
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
+        progressBar = root.findViewById(R.id.indeterminateBar);
 
         int index = 1;
 
@@ -93,7 +91,7 @@ public class PlaceholderFragment extends Fragment
 
     private void readData(final RecyclerView.Adapter adapter)
     {
-        mDatabase = FirebaseDatabase.getInstance().getReference("departments");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("departments");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
@@ -120,6 +118,7 @@ public class PlaceholderFragment extends Fragment
                 }
 
                 adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
