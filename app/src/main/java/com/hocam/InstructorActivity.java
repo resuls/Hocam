@@ -53,7 +53,7 @@ public class InstructorActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        Log.i("ddd", instructor.getReviews()+"");
+        Log.i("", instructor.getReviews()+"");
         recyclerView.setAdapter(new ReviewRecyclerViewAdapter(this, instructor.getReviews()));
     }
 }
