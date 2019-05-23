@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,10 +47,14 @@ public class ReviewActivity extends AppCompatActivity {
                 mDatabase = FirebaseDatabase.getInstance().getReference("departments")
                         .child(course.split(" ")[0])
                         .child(course).child("teachers").child(instructor.getName());
-                mDatabase.push().setValue(new Review(FirebaseAuth.getInstance().getCurrentUser().getEmail(), instructor.getName(),
+                Review review = new Review(FirebaseAuth.getInstance().getCurrentUser().getEmail(), instructor.getName(),
                         course, Integer.parseInt(binding.yearSpinner.getSelectedItem().toString()),
-                        binding.semesterSpinner.getSelectedItem().toString(), binding.reviewText.getText().toString(), binding.ratingBar.getNumStars(),
-                        binding.isAnonymus.isSelected()));
+                        binding.semesterSpinner.getSelectedItem().toString(), binding.reviewText.getText().toString(), (int)binding.ratingBar.getRating(),
+                        binding.isAnonymus.isChecked());
+                if (binding.isAnonymus.isChecked()) {
+                    review.setFrom("Anonymous");
+                }
+                mDatabase.push().setValue(review);
                 dialog.dismiss();
                 startActivity(new Intent(ReviewActivity.this, MainActivity.class));
             }
