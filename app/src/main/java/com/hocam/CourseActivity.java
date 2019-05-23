@@ -49,7 +49,7 @@ public class CourseActivity extends AppCompatActivity {
                 lm.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(lm);
                 recyclerView.addItemDecoration(new DividerItemDecoration(CourseActivity.this, LinearLayoutManager.VERTICAL));
-                recyclerView.setAdapter(new InstructorRecyclerViewAdapter(CourseActivity.this, list));
+                recyclerView.setAdapter(new InstructorRecyclerViewAdapter(CourseActivity.this, list, course));
             }
 
             @Override
