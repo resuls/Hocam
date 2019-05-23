@@ -48,7 +48,7 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
         myRecyclerViewItemHolder.instructor.setText(sm.getInstructor());
         myRecyclerViewItemHolder.semester.setText(sm.getYear()+" "+sm.getSemester());
         myRecyclerViewItemHolder.content.setText(sm.getText());
-        myRecyclerViewItemHolder.rating.setText(String.valueOf(sm.getRating()));
+        myRecyclerViewItemHolder.rating.setText(String.valueOf(sm.getRating()) + new String(Character.toChars(0x2B50)) );
 
 //        myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener()
 //        {
