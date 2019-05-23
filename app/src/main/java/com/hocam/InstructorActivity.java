@@ -14,6 +14,8 @@ import com.hocam.databinding.ActivityInstructorBinding;
 import com.hocam.models.Instructor;
 import com.hocam.ui.main.ReviewRecyclerViewAdapter;
 
+import java.text.DecimalFormat;
+
 public class InstructorActivity extends AppCompatActivity {
 
     private ActivityInstructorBinding binding;
@@ -45,7 +47,7 @@ public class InstructorActivity extends AppCompatActivity {
         instructor = (Instructor) intent.getSerializableExtra("Instructor");
 
         binding.name.setText(instructor.getName());
-        binding.rating.setText(instructor.getRating() + new String(Character.toChars(0x2B50)));
+        binding.rating.setText(new DecimalFormat("#0.00").format(instructor.getRating()) + new String(Character.toChars(0x2B50)));
 
         binding.department.setText("Department: " + intent.getStringExtra("department"));
 
