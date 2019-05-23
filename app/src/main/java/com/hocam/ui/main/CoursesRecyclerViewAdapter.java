@@ -2,11 +2,12 @@ package com.hocam.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hocam.CourseActivity;
@@ -26,25 +27,25 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
         this.courseList = courseList;
     }
 
+    @NonNull
     @Override
-    public RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    public RecyclerViewItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
         LayoutInflater inflator = LayoutInflater.from(context);
 
         View itemView = inflator.inflate(R.layout.courses_recyler, viewGroup, false);
 
-        RecyclerViewItemHolder mViewHolder = new RecyclerViewItemHolder(itemView);
-        return mViewHolder;
+        return new RecyclerViewItemHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
+    public void onBindViewHolder(@NonNull RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
     {
         Course sm = courseList.get(i);
 
         myRecyclerViewItemHolder.courseCode.setText(sm.getCode());
         myRecyclerViewItemHolder.courseName.setText(sm.getName());
-        myRecyclerViewItemHolder.average.setText(Double.toString(sm.getAverage()));
+        myRecyclerViewItemHolder.ratingBar.setRating(sm.getAverage());
 
     }
 
@@ -54,29 +55,28 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
         return courseList.size();
     }
 
-    class RecyclerViewItemHolder extends RecyclerView.ViewHolder
+    class RecyclerViewItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView courseCode, courseName, average;
-        ConstraintLayout parentLayout;
+        TextView courseCode, courseName;
+        RatingBar ratingBar;
 
         public RecyclerViewItemHolder(View itemView)
         {
             super(itemView);
             courseCode = itemView.findViewById(R.id.courseCode);
             courseName = itemView.findViewById(R.id.courseName);
-            average = itemView.findViewById(R.id.average);
-            parentLayout = itemView.findViewById(R.id.recyclerItemLayout);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
+            ratingBar.setIsIndicator(true);
 
-            parentLayout.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    Intent intent = new Intent(context, CourseActivity.class);
-                    intent.putExtra("course", courseCode.getText().toString());
-                    context.startActivity(intent);
-                }
-            });
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = new Intent(context, CourseActivity.class);
+            intent.putExtra("course", courseCode.getText().toString());
+            context.startActivity(intent);
         }
     }
 }
