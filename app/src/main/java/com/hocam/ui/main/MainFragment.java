@@ -102,7 +102,7 @@ public class MainFragment extends Fragment
 
                 for (DataSnapshot department : dataSnapshot.getChildren())
                 {
-                    if (department.getKey().equals(MainActivity.currentUser.getDepartment()))
+                    if (department.getKey().equals(MainActivity.getCurrentUser().getDepartment()))
                     {
                         for (DataSnapshot course : department.getChildren())
                         {
