@@ -11,10 +11,10 @@
     <string name="surname">Surname</string>
 
     <!--Department Codes-->
-    <string name="acc">ACC</string>
-    <string name="ada">ADA</string>
-    <string name="amer">AMER</string>
-
+    <string name="econ">ECON</string>
+    <string name="eee">EEE</string>
+    <string name="eng">ENG</string>
+    <string name="man">MAN</string>
     <string name="ctis">CTIS</string>
     <string name="register_success">Successfully registered!</string>
     <string name="hocam_ug_bilkent_edu_tr">hocam@ug.bilkent.edu.tr</string>
@@ -26,9 +26,10 @@
     <string name="reset">Reset</string>
 
     <string-array name="departments">
-        <item>@string/acc</item>
-        <item>@string/ada</item>
-        <item>@string/amer</item>
+        <item>@string/econ</item>
+        <item>@string/eee</item>
+        <item>@string/eng</item>
+        <item>@string/man</item>
         <item>@string/ctis</item>
     </string-array>
     <string name="title_activity_instructor">InstructorActivity</string>

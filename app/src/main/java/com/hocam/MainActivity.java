@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, CourseActivity.class);
-        intent.putExtra("course", "ENG 101");
-        startActivity(intent);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
