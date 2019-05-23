@@ -25,13 +25,13 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
     }
 
     @Override
-    public RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    public CoursesRecyclerViewAdapter.RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
     {
         LayoutInflater inflator = LayoutInflater.from(viewGroup.getContext());
 
         View itemView = inflator.inflate(R.layout.courses_recyler, viewGroup, false);
 
-        RecyclerViewItemHolder mViewHolder = new RecyclerViewItemHolder(itemView);
+        CoursesRecyclerViewAdapter.RecyclerViewItemHolder mViewHolder = new CoursesRecyclerViewAdapter.RecyclerViewItemHolder(itemView);
         return mViewHolder;
     }
 
