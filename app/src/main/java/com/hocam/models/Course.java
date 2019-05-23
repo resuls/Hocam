@@ -3,9 +3,9 @@ package com.hocam.models;
 public class Course
 {
     private String name, code;
-    private double average;
+    private float average;
 
-    public Course(String name, String code, double average)
+    public Course(String name, String code, float average)
     {
         this.name = name;
         this.code = code;
@@ -22,7 +22,7 @@ public class Course
         return code;
     }
 
-    public double getAverage()
+    public float getAverage()
     {
         return average;
     }

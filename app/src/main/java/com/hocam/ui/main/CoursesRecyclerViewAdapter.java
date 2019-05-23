@@ -1,6 +1,7 @@
 package com.hocam.ui.main;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,26 +9,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hocam.R;
 import com.hocam.models.Course;
 
 import java.util.ArrayList;
 
-public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecyclerViewAdapter.RecyclerViewItemHolder>
-{
+public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecyclerViewAdapter.RecyclerViewItemHolder> {
     private Context context;
-    private ArrayList<Course> recyclerItemValues;
+    private ArrayList<Course> courseList;
 
-    public CoursesRecyclerViewAdapter(Context context, ArrayList<Course> values)
-    {
+    public CoursesRecyclerViewAdapter(Context context, ArrayList<Course> courseList) {
         this.context = context;
-        this.recyclerItemValues = values;
+        this.courseList = courseList;
     }
 
     @Override
-    public RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
-    {
-        LayoutInflater inflator = LayoutInflater.from(viewGroup.getContext());
+    public RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        LayoutInflater inflator = LayoutInflater.from(context);
 
         View itemView = inflator.inflate(R.layout.courses_recyler, viewGroup, false);
 
@@ -36,38 +39,25 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
-    {
-
-        final Course sm = recyclerItemValues.get(i);
+    public void onBindViewHolder(RecyclerViewItemHolder myRecyclerViewItemHolder, int i) {
+        Course sm = courseList.get(i);
 
         myRecyclerViewItemHolder.courseCode.setText(sm.getCode());
         myRecyclerViewItemHolder.courseName.setText(sm.getName());
         myRecyclerViewItemHolder.average.setText(Double.toString(sm.getAverage()));
 
-        myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
-            }
-        });
     }
 
     @Override
-    public int getItemCount()
-    {
-        return recyclerItemValues.size();
+    public int getItemCount() {
+        return courseList.size();
     }
 
-    class RecyclerViewItemHolder extends RecyclerView.ViewHolder
-    {
+    class RecyclerViewItemHolder extends RecyclerView.ViewHolder {
         TextView courseCode, courseName, average;
         ConstraintLayout parentLayout;
 
-        public RecyclerViewItemHolder(View itemView)
-        {
+        public RecyclerViewItemHolder(View itemView) {
             super(itemView);
             courseCode = itemView.findViewById(R.id.courseCode);
             courseName = itemView.findViewById(R.id.courseName);
