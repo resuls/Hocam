@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class CourseActivity extends AppCompatActivity {
                 LinearLayoutManager lm = new LinearLayoutManager(CourseActivity.this);
                 lm.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(lm);
+                recyclerView.addItemDecoration(new DividerItemDecoration(CourseActivity.this, LinearLayoutManager.VERTICAL));
                 recyclerView.setAdapter(new InstructorRecyclerViewAdapter(CourseActivity.this, list));
             }
 

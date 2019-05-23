@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, CourseActivity.class);
-        intent.putExtra("course", "CTIS 151");
+        intent.putExtra("course", "ENG 101");
         startActivity(intent);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 

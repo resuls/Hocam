@@ -52,6 +52,7 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
             {
                 Intent intent = new Intent(context, InstructorActivity.class);
                 intent.putExtra("Instructor", sm);
+                intent.putExtra("department", sm.getReviews().get(0).getCourse().split(" ")[0]);
                 context.startActivity(intent);
             }
         });
