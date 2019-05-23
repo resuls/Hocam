@@ -80,7 +80,7 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
             super(itemView);
             parentLayout = itemView.findViewById(R.id.layout);
             name = itemView.findViewById(R.id.name);
-            ratingBar = itemView.findViewById(R.id.ratingBar2);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
             ratingBar.setIsIndicator(true);
         }
     }
