@@ -63,7 +63,8 @@ public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<Departm
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v)
+        {
 
         }
     }

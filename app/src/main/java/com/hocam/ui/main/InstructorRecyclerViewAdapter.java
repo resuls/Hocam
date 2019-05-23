@@ -15,7 +15,8 @@ import com.hocam.models.Instructor;
 
 import java.util.ArrayList;
 
-public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<InstructorRecyclerViewAdapter.RecyclerViewItemHolder>{
+public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<InstructorRecyclerViewAdapter.RecyclerViewItemHolder>
+{
     private Context context;
     private ArrayList<Instructor> recyclerItemValues;
 

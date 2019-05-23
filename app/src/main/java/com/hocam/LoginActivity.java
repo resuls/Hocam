@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity
 
         if (user != null)
         {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
             finish();
         }
         else
@@ -55,8 +55,6 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-
-
     }
 
     public void signIn(View view)

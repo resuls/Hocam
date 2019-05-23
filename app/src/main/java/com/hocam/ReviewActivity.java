@@ -2,14 +2,13 @@ package com.hocam;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.hocam.databinding.ActivityLoginBinding;
 import com.hocam.databinding.ActivityReviewBinding;
 import com.hocam.models.Instructor;
 import com.hocam.models.Review;
@@ -31,9 +30,11 @@ public class ReviewActivity extends AppCompatActivity {
 
         binding.teacherName.setText(instructor.getName());
 
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+        binding.submitButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 String course = binding.courseSpinner.getSelectedItem().toString();
                 mDatabase = FirebaseDatabase.getInstance().getReference("departments")
                         .child(course.split(" ")[0])
