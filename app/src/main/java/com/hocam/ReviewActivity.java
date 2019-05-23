@@ -3,6 +3,9 @@ package com.hocam;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -56,6 +59,13 @@ public class ReviewActivity extends AppCompatActivity {
                 }
                 mDatabase.push().setValue(review);
                 dialog.dismiss();
+                try {
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                    r.play();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 startActivity(new Intent(ReviewActivity.this, MainActivity.class));
             }
         });
