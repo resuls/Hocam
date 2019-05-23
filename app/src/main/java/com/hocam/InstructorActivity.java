@@ -3,12 +3,10 @@ package com.hocam;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -27,10 +25,10 @@ public class InstructorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_instructor);
+
+        binding.fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InstructorActivity.this, ReviewActivity.class);
@@ -39,20 +37,17 @@ public class InstructorActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerView);
-
         intent = getIntent();
         instructor = (Instructor) intent.getSerializableExtra("Instructor");
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_instructor);
-        binding.toolbarLayout
-                .setTitle(instructor.getName() + "\n\n\n" +
-                        instructor.getRating() +
-                          new String(Character.toChars(0x2B50)));
-        binding.subtitleTv.setText("Department: " + intent.getStringExtra("department"));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        binding.name.setText(instructor.getName());
+        binding.rating.setText(instructor.getRating() + new String(Character.toChars(0x2B50)));
+
+        binding.department.setText("Department: " + intent.getStringExtra("department"));
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         Log.i("", instructor.getReviews() + "");
-        recyclerView.setAdapter(new ReviewRecyclerViewAdapter(this, instructor.getReviews()));
+        binding.recyclerView.setAdapter(new ReviewRecyclerViewAdapter(this, instructor.getReviews()));
     }
 }
