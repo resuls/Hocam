@@ -19,11 +19,13 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
 {
     private Context context;
     private ArrayList<Instructor> recyclerItemValues;
+    private String course;
 
-    public InstructorRecyclerViewAdapter(Context context, ArrayList<Instructor> values)
+    public InstructorRecyclerViewAdapter(Context context, ArrayList<Instructor> values, String course)
     {
         this.context = context;
         this.recyclerItemValues = values;
+        this.course = course;
     }
 
     @Override
@@ -54,6 +56,7 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
                 Intent intent = new Intent(context, InstructorActivity.class);
                 intent.putExtra("Instructor", sm);
                 intent.putExtra("department", sm.getReviews().get(0).getCourse().split(" ")[0]);
+                intent.putExtra("course", course);
                 context.startActivity(intent);
             }
         });
