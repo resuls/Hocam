@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hocam.databinding.ActivityRegisterBinding;
 import com.hocam.models.User;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity
@@ -36,6 +38,14 @@ public class RegisterActivity extends AppCompatActivity
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+
+        ArrayList<String> departments = new ArrayList<>();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, departments);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinner.setAdapter(adapter);
     }
 
     @Override

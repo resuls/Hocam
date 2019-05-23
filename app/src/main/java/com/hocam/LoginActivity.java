@@ -36,15 +36,23 @@ public class LoginActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         // Check if user is signed in (non-null) and update UI accordingly.
         user = mAuth.getCurrentUser();
+
+        if (user != null)
+        {
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+
+        setContentView(R.layout.activity_login);
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
     }
 
     public void signIn(View view)

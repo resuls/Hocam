@@ -10,12 +10,6 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
 
-    <!--Department Codes-->
-    <string name="acc">ACC</string>
-    <string name="ada">ADA</string>
-    <string name="amer">AMER</string>
-
-    <string name="ctis">CTIS</string>
     <string name="register_success">Successfully registered!</string>
     <string name="hocam_ug_bilkent_edu_tr">hocam@ug.bilkent.edu.tr</string>
     <string name="info">Please register with your bilkent email which ends with @ug.bilkent.edu.tr</string>
@@ -25,18 +19,12 @@
     <string name="cancel">Cancel</string>
     <string name="reset">Reset</string>
 
-    <string-array name="departments">
-        <item>@string/acc</item>
-        <item>@string/ada</item>
-        <item>@string/amer</item>
-        <item>@string/ctis</item>
-    </string-array>
     <string name="title_activity_instructor">InstructorActivity</string>
     <string name="action_settings">Settings</string>
     <string name="teacher">Instructor:</string>
     <string name="rating">Rating:</string>
     <string name="course">Course:</string>
     <string name="semester">Semester:</string>
-    <string name="anonymus">Make it Anonymus</string>
+    <string name="anonymus">Make it Anonymous</string>
     <string name="share">share</string>
 </resources>
