@@ -1,14 +1,20 @@
 package com.hocam.ui.main;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hocam.CourseActivity;
 import com.hocam.MainActivity;
@@ -47,7 +53,6 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
         myRecyclerViewItemHolder.courseCode.setText(sm.getCode());
         myRecyclerViewItemHolder.courseName.setText(sm.getName());
         myRecyclerViewItemHolder.ratingBar.setRating(sm.getAverage());
-
     }
 
     @Override
@@ -79,5 +84,27 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
             intent.putExtra("course", courseCode.getText().toString());
             context.startActivity(intent);
         }
+    }
+
+    private void makeAndShowDialogBox(Float avg) {
+        AlertDialog.Builder mDialogBox = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.rating, null);
+
+        RatingBar bar = dialogView.findViewById(R.id.ratingBar3);
+        bar.setRating(avg);
+
+        mDialogBox.setView(dialogView);
+
+        // Set three option buttons
+        mDialogBox.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // whatever should be done when answering "YES" goes
+                        // here
+                    }
+                });
+        mDialogBox.create();
+        mDialogBox.show();
     }
 }
