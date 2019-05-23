@@ -3,14 +3,13 @@ package com.hocam;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.hocam.databinding.ActivityLoginBinding;
 import com.hocam.databinding.ActivityReviewBinding;
 import com.hocam.models.Instructor;
 import com.hocam.models.Review;
@@ -23,6 +22,9 @@ public class ReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
         setContentView(R.layout.activity_review);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_review);
 
@@ -33,9 +35,11 @@ public class ReviewActivity extends AppCompatActivity {
 
         binding.teacherName.setText(instructor.getName());
 
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+        binding.submitButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 ProgressDialog dialog = ProgressDialog.show(ReviewActivity.this, "",
                         "Loading. Please wait...", true);
                 String course = binding.course.getText().toString();

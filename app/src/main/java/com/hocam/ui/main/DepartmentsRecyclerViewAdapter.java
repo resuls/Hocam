@@ -1,7 +1,6 @@
 package com.hocam.ui.main;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,14 +51,14 @@ public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<Departm
     public class ViewItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView deptName, deptAbbr;
-        ConstraintLayout parentLayout;
 
         public ViewItemHolder(View itemView)
         {
             super(itemView);
             deptName = itemView.findViewById(R.id.deptName);
             deptAbbr = itemView.findViewById(R.id.deptAbbr);
-            parentLayout = itemView.findViewById(R.id.recyclerItemLayout);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override

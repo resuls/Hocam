@@ -7,7 +7,7 @@ public class Instructor implements Serializable
 {
     private String name;
     private ArrayList<Review> reviews = new ArrayList<>();
-    private double rating;
+    private float rating;
 
     public Instructor(String name, ArrayList<Review> reviews)
     {
@@ -16,9 +16,9 @@ public class Instructor implements Serializable
         this.rating = calcRating();
     }
 
-    private double calcRating()
+    private float calcRating()
     {
-        double rate = 0;
+        float rate = 0;
         for (Review i : this.reviews)
         {
             rate += i.getRating();
@@ -46,12 +46,12 @@ public class Instructor implements Serializable
         this.reviews = reviews;
     }
 
-    public double getRating()
+    public float getRating()
     {
         return rating;
     }
 
-    public void setRating(double rating)
+    public void setRating(float rating)
     {
         this.rating = rating;
     }
