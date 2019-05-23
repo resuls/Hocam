@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hocam.CourseActivity;
+import com.hocam.MainActivity;
 import com.hocam.R;
 import com.hocam.models.Course;
 

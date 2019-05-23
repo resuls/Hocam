@@ -1,12 +1,15 @@
 package com.hocam.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hocam.CourseActivity;
+import com.hocam.DepartmentActivity;
 import com.hocam.R;
 import com.hocam.models.Department;
 
@@ -64,7 +67,9 @@ public class DepartmentsRecyclerViewAdapter extends RecyclerView.Adapter<Departm
         @Override
         public void onClick(View v)
         {
-
+            Intent intent = new Intent(context, DepartmentActivity.class);
+            intent.putExtra("dept", deptAbbr.getText().toString());
+            context.startActivity(intent);
         }
     }
 }
