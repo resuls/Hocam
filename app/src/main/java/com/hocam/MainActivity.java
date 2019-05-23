@@ -21,7 +21,7 @@ import com.hocam.models.User;
 import com.hocam.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    public static User currentUser;
+    private static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,5 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public static User getCurrentUser()
+    {
+        return currentUser;
     }
 }
