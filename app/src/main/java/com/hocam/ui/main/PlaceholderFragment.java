@@ -13,11 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hocam.MainActivity;
 import com.hocam.R;
 import com.hocam.models.Course;
 import com.hocam.models.Department;
@@ -100,7 +103,7 @@ public class PlaceholderFragment extends Fragment {
 
                 for (DataSnapshot department : dataSnapshot.getChildren())
                 {
-                    if (department.getKey().equals("ENG"))
+                    if (department.getKey().equals(MainActivity.currentUser.getDepartment()))
                     {
                         for (DataSnapshot course : department.getChildren())
                         {
