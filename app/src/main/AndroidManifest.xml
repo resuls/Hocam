@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".DepartmentActivity"></activity>
         <activity android:name=".ReviewActivity" />
         <activity android:name=".CourseActivity" />
         <activity
