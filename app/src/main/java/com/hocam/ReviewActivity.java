@@ -42,10 +42,14 @@ public class ReviewActivity extends AppCompatActivity {
                 mDatabase = FirebaseDatabase.getInstance().getReference("departments")
                         .child(course.split(" ")[0])
                         .child(course).child("teachers").child(instructor.getName());
-                mDatabase.push().setValue(new Review(FirebaseAuth.getInstance().getCurrentUser().getEmail(), instructor.getName(),
+                Review review = new Review(FirebaseAuth.getInstance().getCurrentUser().getEmail(), instructor.getName(),
                         course, Integer.parseInt(binding.yearSpinner.getSelectedItem().toString()),
                         binding.semesterSpinner.getSelectedItem().toString(), binding.reviewText.getText().toString(), binding.ratingBar.getNumStars(),
-                        binding.isAnonymus.isSelected()));
+                        binding.isAnonymus.isSelected());
+                if (binding.isAnonymus.isSelected()) {
+                    review.setFrom("Anonymous");
+                }
+                mDatabase.push().setValue(review);
                 dialog.dismiss();
                 startActivity(new Intent(ReviewActivity.this, MainActivity.class));
             }
