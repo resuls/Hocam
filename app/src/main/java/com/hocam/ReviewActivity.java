@@ -80,6 +80,7 @@ public class ReviewActivity extends AppCompatActivity
                     e.printStackTrace();
                 }
                 startActivity(new Intent(ReviewActivity.this, MainActivity.class));
+                finish();
             }
         });
     }

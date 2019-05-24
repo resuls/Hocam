@@ -8,6 +8,10 @@ public class Review implements Serializable
     private int rating, year;
     private boolean anonymous;
 
+    public Review()
+    {
+    }
+
     public Review(String from, String instructor, String course, int year, String semester, String text, int rating, boolean anonymous)
     {
         this.from = from;
