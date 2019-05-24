@@ -8,6 +8,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.hocam.databinding.ActivityInstructorBinding;
@@ -22,6 +24,7 @@ public class InstructorActivity extends AppCompatActivity {
     private Intent intent;
     private RecyclerView recyclerView;
     private Instructor instructor;
+    private GestureDetector g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class InstructorActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
         setContentView(R.layout.activity_instructor);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_instructor);
+        g = new GestureDetector(this, new GestureListener());
 
         binding.fab.setOnClickListener(new View.OnClickListener()
         {
@@ -55,5 +59,18 @@ public class InstructorActivity extends AppCompatActivity {
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         Log.i("", instructor.getReviews() + "");
         binding.recyclerView.setAdapter(new ReviewRecyclerViewAdapter(this, instructor.getReviews()));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        g.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public void onLongPress(MotionEvent e) {
+            startActivity(new Intent(InstructorActivity.this, MainActivity.class));
+        }
     }
 }

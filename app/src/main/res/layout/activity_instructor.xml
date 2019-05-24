@@ -15,7 +15,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="14dp"
-            android:text="TextView"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             tools:layout_constraintBottom_toTopOf="@+id/department"
@@ -32,7 +31,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
             tools:layout_constraintEnd_toEndOf="parent"
             tools:layout_constraintStart_toStartOf="parent"
             tools:layout_constraintTop_toBottomOf="@+id/name" />
@@ -44,7 +42,6 @@
             android:layout_marginStart="64dp"
             android:layout_marginEnd="200dp"
             android:layout_marginBottom="24dp"
-            android:text="TextView"
             tools:layout_constraintBottom_toTopOf="@+id/recyclerView"
             tools:layout_constraintEnd_toStartOf="@+id/fab"
             tools:layout_constraintStart_toStartOf="parent" />

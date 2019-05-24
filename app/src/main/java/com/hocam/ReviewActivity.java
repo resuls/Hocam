@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +45,11 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if(binding.reviewText.getText().toString().equals("") || binding.ratingBar.getRating() == 0.0) {
+                    Toast.makeText(ReviewActivity.this, "Please write valid review and select rating before submitting.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 ProgressDialog dialog = ProgressDialog.show(ReviewActivity.this, "",
                         "Loading. Please wait...", true);
                 String course = binding.course.getText().toString();
