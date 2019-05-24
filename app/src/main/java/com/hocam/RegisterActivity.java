@@ -24,12 +24,13 @@ import com.hocam.databinding.ActivityRegisterBinding;
 import com.hocam.models.User;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity
 {
     public static final Pattern EMAIL = Pattern.compile(
-            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}@ug.bilkent.edu.tr");
+            "[a-zA-Z0-9+._%\\-]{1,256}@ug.bilkent.edu.tr");
     private ActivityRegisterBinding binding;
     private FirebaseAuth mAuth;
     private ArrayList<String> departments;
@@ -121,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity
                             User user = new User(name, surname, department, email);
 
                             FirebaseDatabase.getInstance().getReference("users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>()
                             {
                                 @Override
@@ -134,15 +135,15 @@ public class RegisterActivity extends AppCompatActivity
                                     }
                                     else
                                     {
-                                        Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
-                                                Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
+                                                Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                         }
                         else
                         {
-                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
+                            Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

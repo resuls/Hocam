@@ -1,7 +1,8 @@
 package com.hocam.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,38 +25,28 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
         this.recyclerItemValues = values;
     }
 
+    @NonNull
     @Override
-    public RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    public RecyclerViewItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
         LayoutInflater inflator = LayoutInflater.from(context);
 
         View itemView = inflator.inflate(R.layout.review_recycler, viewGroup, false);
 
-        RecyclerViewItemHolder mViewHolder = new RecyclerViewItemHolder(itemView);
-        return mViewHolder;
+        return new RecyclerViewItemHolder(itemView);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
-    public void onBindViewHolder(RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
+    public void onBindViewHolder(@NonNull RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
     {
 
         final Review sm = recyclerItemValues.get(i);
 
         myRecyclerViewItemHolder.from.setText(sm.getFrom());
-        myRecyclerViewItemHolder.course.setText(sm.getCourse());
-        myRecyclerViewItemHolder.instructor.setText(sm.getInstructor());
-        myRecyclerViewItemHolder.semester.setText(sm.getYear() + " " + sm.getSemester());
+        myRecyclerViewItemHolder.semester.setText(String.format("%d %s", sm.getYear(), sm.getSemester()));
         myRecyclerViewItemHolder.content.setText(sm.getText());
-        myRecyclerViewItemHolder.rating.setText(sm.getRating() + new String(Character.toChars(0x2B50)));
-
-//        myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View view)
-//            {
-//
-//            }
-//        });
+        myRecyclerViewItemHolder.rating.setText(String.format("%d%s", sm.getRating(), new String(Character.toChars(0x2B50))));
     }
 
     @Override
@@ -66,16 +57,12 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
 
     class RecyclerViewItemHolder extends RecyclerView.ViewHolder
     {
-        TextView from, course, instructor, semester, rating, content;
-        ConstraintLayout parentLayout;
+        TextView from, semester, rating, content;
 
-        public RecyclerViewItemHolder(View itemView)
+        RecyclerViewItemHolder(View itemView)
         {
             super(itemView);
-            parentLayout = itemView.findViewById(R.id.layout);
             from = itemView.findViewById(R.id.from);
-            course = itemView.findViewById(R.id.course);
-            instructor = itemView.findViewById(R.id.instructor);
             semester = itemView.findViewById(R.id.semester);
             content = itemView.findViewById(R.id.content);
             rating = itemView.findViewById(R.id.rating);

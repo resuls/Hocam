@@ -1,11 +1,13 @@
 package com.hocam;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,15 +20,17 @@ import com.hocam.models.Review;
 import com.hocam.ui.main.InstructorRecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class CourseActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity
+{
     private String course;
-    private DatabaseReference mDatabase;
     private ArrayList<Instructor> list = new ArrayList<>();
     private RecyclerView recyclerView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -35,7 +39,14 @@ public class CourseActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.courseRecyclerView);
         course = getIntent().getStringExtra("course");
-        mDatabase = FirebaseDatabase.getInstance().getReference("departments")
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        toolbar.setTitle(course);
+        toolbar.setTitleTextColor(Color.WHITE);
+
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("departments")
                 .child(course.split(" ")[0])
                 .child(course).child("teachers");
 
@@ -72,8 +83,8 @@ public class CourseActivity extends AppCompatActivity {
                 r.add(i.getValue(Review.class));
             }
 
+            Collections.reverse(r);
             list.add(new Instructor(snapshot.getKey(), r));
-
         }
     }
 }

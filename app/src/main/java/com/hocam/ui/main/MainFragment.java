@@ -21,6 +21,7 @@ import com.hocam.models.Course;
 import com.hocam.models.Department;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainFragment extends Fragment
 {
@@ -102,19 +103,19 @@ public class MainFragment extends Fragment
 
                 for (DataSnapshot department : dataSnapshot.getChildren())
                 {
-                    if (department.getKey().equals(MainActivity.getCurrentUser().getDepartment()))
+                    if (Objects.requireNonNull(department.getKey()).equals(MainActivity.getCurrentUser().getDepartment()))
                     {
                         for (DataSnapshot course : department.getChildren())
                         {
                             String name = (String) course.child("name").getValue();
                             if (name != null)
                             {
-                                String avg = course.child("avg").getValue().toString();
+                                String avg = Objects.requireNonNull(course.child("avg").getValue()).toString();
                                 courseList.add(new Course(name, course.getKey(), Float.parseFloat(avg)));
                             }
                         }
                     }
-                    deptList.add(new Department(department.child("name").getValue().toString(), department.getKey()));
+                    deptList.add(new Department(Objects.requireNonNull(department.child("name").getValue()).toString(), department.getKey()));
                 }
 
                 adapter.notifyDataSetChanged();

@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    xmlns:tools2="http://schemas.android.com/tools"
+    android:id="@+id/layout2">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toTopOf="parent"
+            tools:title="Ctis"
+            tools:titleTextColor="@color/divider" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#797979"
+            tools:layout_constraintTop_toBottomOf="@+id/fab" />
 
         <TextView
             android:id="@+id/name"
@@ -14,15 +36,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="14dp"
             android:textColor="@android:color/black"
             android:textSize="24sp"
-            tools:layout_constraintBottom_toTopOf="@+id/department"
+            tools2:text="Burcu Liman"
             tools:layout_constraintEnd_toEndOf="parent"
             tools:layout_constraintHorizontal_bias="0.498"
             tools:layout_constraintStart_toStartOf="parent"
-            tools:layout_constraintTop_toTopOf="parent"
-            tools:layout_constraintVertical_bias="0.0" />
+            tools:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
             android:id="@+id/rating"
@@ -31,31 +51,22 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            tools2:text="5"
             tools:layout_constraintEnd_toEndOf="parent"
             tools:layout_constraintStart_toStartOf="parent"
             tools:layout_constraintTop_toBottomOf="@+id/name" />
 
-        <TextView
-            android:id="@+id/department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="200dp"
-            android:layout_marginBottom="24dp"
-            tools:layout_constraintBottom_toTopOf="@+id/recyclerView"
-            tools:layout_constraintEnd_toStartOf="@+id/fab"
-            tools:layout_constraintStart_toStartOf="parent" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="388dp"
-            android:layout_height="502dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             tools:layout_constraintBottom_toBottomOf="parent"
             tools:layout_constraintEnd_toEndOf="parent"
             tools:layout_constraintHorizontal_bias="0.0"
-            tools:layout_constraintStart_toStartOf="parent" />
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toBottomOf="@+id/view" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
@@ -63,11 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
             android:src="@android:drawable/ic_menu_edit"
-            tools:layout_constraintBottom_toTopOf="@+id/recyclerView"
             tools:layout_constraintEnd_toEndOf="parent"
-            tools:layout_constraintTop_toBottomOf="@+id/rating"
-            tools:layout_constraintVertical_bias="0.0" />
+            tools:layout_constraintTop_toBottomOf="@+id/rating" />
     </android.support.constraint.ConstraintLayout>
 </layout>

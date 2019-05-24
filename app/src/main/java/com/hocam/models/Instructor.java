@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Instructor implements Serializable
 {
     private String name;
-    private ArrayList<Review> reviews = new ArrayList<>();
+    private ArrayList<Review> reviews;
     private float rating;
 
     public Instructor(String name, ArrayList<Review> reviews)

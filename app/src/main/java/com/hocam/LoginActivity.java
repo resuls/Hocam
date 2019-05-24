@@ -25,12 +25,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.hocam.databinding.ActivityLoginBinding;
 import com.hocam.ui.main.ResetPasswordDialog;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity
 {
     private final int REGISTER_REQUEST = 100;
     private ActivityLoginBinding binding;
     private FirebaseAuth mAuth;
-    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,16 +45,14 @@ public class LoginActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        user = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
 
-        if (user != null)
+        if (user != null && user.isEmailVerified())
         {
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
             finish();
         }
-        else
-            mAuth.signOut();
 
         setContentView(R.layout.activity_login);
 
@@ -94,8 +93,7 @@ public class LoginActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
-                            user = mAuth.getCurrentUser();
-                            if (user.isEmailVerified())
+                            if (Objects.requireNonNull(mAuth.getCurrentUser()).isEmailVerified())
                             {
                                 animateButtonWidth();
                                 fadeOutTextandSetProgressDialog();
@@ -108,7 +106,7 @@ public class LoginActivity extends AppCompatActivity
                         }
                         else
                         {
-                            makeToast(task.getException().getMessage());
+                            makeToast(Objects.requireNonNull(task.getException()).getMessage());
                         }
                     }
                 });

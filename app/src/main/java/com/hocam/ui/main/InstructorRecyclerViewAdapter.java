@@ -2,6 +2,7 @@ package com.hocam.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,19 +30,19 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
         this.course = course;
     }
 
+    @NonNull
     @Override
-    public InstructorRecyclerViewAdapter.RecyclerViewItemHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    public InstructorRecyclerViewAdapter.RecyclerViewItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
         LayoutInflater inflator = LayoutInflater.from(viewGroup.getContext());
 
         View itemView = inflator.inflate(R.layout.instructor_recycler, viewGroup, false);
 
-        InstructorRecyclerViewAdapter.RecyclerViewItemHolder mViewHolder = new InstructorRecyclerViewAdapter.RecyclerViewItemHolder(itemView);
-        return mViewHolder;
+        return new RecyclerViewItemHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
+    public void onBindViewHolder(@NonNull RecyclerViewItemHolder myRecyclerViewItemHolder, int i)
     {
 
         final Instructor sm = recyclerItemValues.get(i);
@@ -75,7 +76,7 @@ public class InstructorRecyclerViewAdapter extends RecyclerView.Adapter<Instruct
         RatingBar ratingBar;
         ConstraintLayout parentLayout;
 
-        public RecyclerViewItemHolder(View itemView)
+        RecyclerViewItemHolder(View itemView)
         {
             super(itemView);
             parentLayout = itemView.findViewById(R.id.layout);

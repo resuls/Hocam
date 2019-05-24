@@ -20,6 +20,8 @@ import com.hocam.databinding.ActivityMainBinding;
 import com.hocam.models.User;
 import com.hocam.ui.main.SectionsPagerAdapter;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     public static User currentUser;
 
@@ -57,17 +59,17 @@ public class MainActivity extends AppCompatActivity {
     private void setCurrentUser()
     {
         DatabaseReference depDb = FirebaseDatabase.getInstance().getReference("users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
 
         depDb.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                currentUser = new User(dataSnapshot.child("name").getValue().toString(),
-                        dataSnapshot.child("surname").getValue().toString(),
-                        dataSnapshot.child("department").getValue().toString(),
-                        dataSnapshot.child("email").getValue().toString());
+                currentUser = new User(Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString(),
+                        Objects.requireNonNull(dataSnapshot.child("surname").getValue()).toString(),
+                        Objects.requireNonNull(dataSnapshot.child("department").getValue()).toString(),
+                        Objects.requireNonNull(dataSnapshot.child("email").getValue()).toString());
             }
 
             @Override
