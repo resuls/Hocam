@@ -1,6 +1,10 @@
 package com.hocam.ui.main;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,31 +16,34 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.hocam.LoginActivity;
 import com.hocam.R;
 import com.hocam.RegisterActivity;
+
+import java.util.Objects;
 
 public class ResetPasswordDialog extends DialogFragment
 {
     private EditText edtEmail;
-    private TextView btnCancel;
-    private TextView btnReset;
-
-    @Override
-    public void onStart()
+    private String email;
+    private Dialog dialog;
+    private BroadcastReceiver myIntentBroadCastReciver = new BroadcastReceiver()
     {
-        super.onStart();
-        Dialog dialog = getDialog();
-        if (dialog != null)
+        @Override
+        public void onReceive(Context context, Intent intent)
         {
-            int width = ViewGroup.LayoutParams.MATCH_PARENT;
-            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            dialog.getWindow().setLayout(width, height);
+            int result = intent.getIntExtra("result", 0);
+
+            if (result != 0)
+            {
+                Toast.makeText(context, "Reset password instructions has been sent to your email.", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+            else
+            {
+                Toast.makeText(context, intent.getStringExtra("message"), Toast.LENGTH_SHORT).show();
+            }
         }
-    }
+    };
 
     @Nullable
     @Override
@@ -46,15 +53,33 @@ public class ResetPasswordDialog extends DialogFragment
     }
 
     @Override
+    public void onStart()
+    {
+        super.onStart();
+        dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            Objects.requireNonNull(dialog.getWindow()).setLayout(width, height);
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
 
         edtEmail = view.findViewById(R.id.edtEmail);
-        btnCancel = view.findViewById(R.id.btnCancel);
-        btnReset = view.findViewById(R.id.btnReset);
+        TextView btnCancel = view.findViewById(R.id.btnCancel);
+        TextView btnReset = view.findViewById(R.id.btnReset);
 
         edtEmail.requestFocus();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("PASS");
+
+        Objects.requireNonNull(getContext()).registerReceiver(myIntentBroadCastReciver, intentFilter);
 
         btnCancel.setOnClickListener(new View.OnClickListener()
         {
@@ -70,7 +95,7 @@ public class ResetPasswordDialog extends DialogFragment
             @Override
             public void onClick(View v)
             {
-                final String email = edtEmail.getText().toString().trim();
+                email = edtEmail.getText().toString().trim();
 
                 if (email.isEmpty())
                 {
@@ -86,25 +111,10 @@ public class ResetPasswordDialog extends DialogFragment
                     return;
                 }
 
-                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>()
-                        {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task)
-                            {
-                                if (task.isSuccessful())
-                                {
-                                    Toast.makeText(getContext(), "Reset password instructions has been sent to your email.", Toast.LENGTH_SHORT).show();
-                                    ((LoginActivity) getActivity()).setEmailBox(email);
+                Intent intent = new Intent(getContext(), ResetPasswordService.class);
+                intent.putExtra("email", email);
 
-                                    getDialog().dismiss();
-                                }
-                                else
-                                {
-                                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                Objects.requireNonNull(getContext()).startService(intent);
             }
         });
     }
